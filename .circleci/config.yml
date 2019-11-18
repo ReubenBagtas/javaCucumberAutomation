@@ -139,11 +139,11 @@ jobs:
         - image: circleci/python:3.7.4-browsers
     steps:
       - checkout
-      - run:
-          name: Update PATH for pipenv and terraform the 'circleci' way
-          command: |
-            echo 'export PATH=${PATH}:${HOME}/.local/bin:${HOME}/project/.circleci' >> $BASH_ENV
-            source $BASH_ENV
+      # - run:
+      #     name: Update PATH for pipenv and terraform the 'circleci' way
+      #     command: |
+      #       echo 'export PATH=${PATH}:${HOME}/.local/bin:${HOME}/project/.circleci' >> $BASH_ENV
+      #       source $BASH_ENV
       - run:
           name: Install Python Packages
           command: |
@@ -153,8 +153,6 @@ jobs:
       - run:
           name: Run "Regression" Tests in "alpha" environment
           command: |
-            pipenv run getbastiontoken
-            pipenv run tunnel
             pipenv run pytest -m "regression|smoke|critical" -v --env "alpha" --platform "chrome" --host "local" --reruns=2 --workers 4 --tests-per-worker 1
       - run:
           name: Move Screenshots so they can be saved as CircleCI artifacts
@@ -173,11 +171,11 @@ jobs:
         - image: circleci/python:3.7.4-browsers
     steps:
       - checkout
-      - run:
-          name: Update PATH for pipenv and terraform the 'circleci' way
-          command: |
-            echo 'export PATH=${PATH}:${HOME}/.local/bin:${HOME}/project/.circleci' >> $BASH_ENV
-            source $BASH_ENV
+      # - run:
+      #     name: Update PATH for pipenv and terraform the 'circleci' way
+      #     command: |
+      #       echo 'export PATH=${PATH}:${HOME}/.local/bin:${HOME}/project/.circleci' >> $BASH_ENV
+      #       source $BASH_ENV
       - run:
           name: Install Python Packages
           command: |
@@ -187,8 +185,6 @@ jobs:
       - run:
           name: Run "Regression" Tests in "alpha" environment and "Critical" tests in "prod"
           command: |
-            pipenv run getbastiontoken
-            pipenv run tunnel
             pipenv run pytest -m "regression|smoke|critical" -v --env "alpha" --platform "chrome" --host "local" --reruns=2 --workers 4 --tests-per-worker 1
             pipenv run pytest -m "critical" -v --env "prod" --platform "chrome" --host "local" --reruns=2
       - run:
