@@ -220,36 +220,36 @@ workflows:
                     ignore:
                         - master
 
-  critical-prod-monitor:
-    triggers:
-      - schedule:
-          cron: "0,15,30,45 * * * *"
-          filters:
-            branches:
-              only:
-                - master
-    jobs:
-      - Critical_Tests_Prod
+  # critical-prod-monitor:
+  #   triggers:
+  #     - schedule:
+  #         cron: "0,15,30,45 * * * *"
+  #         filters:
+  #           branches:
+  #             only:
+  #               - master
+  #   jobs:
+  #     - Critical_Tests_Prod
 
-  alpha-monitor:
-    triggers:
-      - schedule:
-          cron: "5,20,35,50 * * * *"
-          filters:
-            branches:
-              only:
-                - master
-    jobs:
-      - Critical_Tests_Alpha
-      - Smoke_Tests_Alpha
+  # alpha-monitor:
+  #   triggers:
+  #     - schedule:
+  #         cron: "5,20,35,50 * * * *"
+  #         filters:
+  #           branches:
+  #             only:
+  #               - master
+  #   jobs:
+  #     - Critical_Tests_Alpha
+  #     - Smoke_Tests_Alpha
 
-  nightly-alpha-regression_tests:
-    triggers:
-      - schedule:
-          cron: "0 22 * * * "
-          filters:
-            branches:
-              only:
-                - master
-    jobs:
-      - Regression_Tests_Alpha
+  # nightly-alpha-regression_tests:
+  #   triggers:
+  #     - schedule:
+  #         cron: "0 22 * * * "
+  #         filters:
+  #           branches:
+  #             only:
+  #               - master
+  #   jobs:
+  #     - Regression_Tests_Alpha
